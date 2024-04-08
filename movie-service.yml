@@ -16,6 +16,19 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+queue:
+  movie:
+    name: MovieQueue
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
 eureka:
   client:
