@@ -4,9 +4,35 @@ server:
 spring:
   application:
     name: catalog-service
+  mongodb:
+    embedded:
+      version: 4.0.2
+  data:
+    mongodb:
+      database: catalog
+      port: 27017
   zipkin:
       base-url: http://localhost:9411/
       enabled: true
+  rabbitmq:
+    listener:
+      simple:
+        default-requeue-rejected: false
+    binding:
+      listener:
+        simple:
+          queues:
+            - name: ${queue.movie.name}
+            - name: ${queue.serie.name}
+    queues:
+      - name: ${queue.movie.name}
+        durable: true
+      - name: ${queue.serie.name}
+        durable: true
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
@@ -62,3 +88,9 @@ resilience4j:
                 #        y la excepción contra la q queremos reintentar
                 retryExceptions:
                     - feign.FeignException$InternalServerError
+
+queue:
+  movie:
+    name: MovieQueue
+  serie:
+    name: SerieQueue
