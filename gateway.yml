@@ -15,6 +15,10 @@ spring:
           predicates:
             - Path=/catalog/**
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
 eureka:
   client:
