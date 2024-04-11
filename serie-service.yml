@@ -1,6 +1,5 @@
 server:
     port: ${PORT:${SERVER_PORT:0}}
-
 spring:
     mongodb:
         embedded:
@@ -22,15 +21,10 @@ spring:
 queue:
   serie:
     name: SerieQueue
-
-
 management:
   tracing:
     sampling:
-      probability: 1.0
-    
-    
-
+      probability: 1.0  
 eureka:
   client:
     register-with-eureka: true
